@@ -1,0 +1,61 @@
+// 处理元素容器宽高比 https://www.w3cplus.com/mobile/vw-layout-in-vue.html
+// <div class="aspectratio">
+//   <div class="aspectratio-content"></div>
+// </div>
+.aspectratio {
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    width: 1px;
+    margin-left: -1px;
+    height: 0;
+  }
+  .aspectratio-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+// 结合postcss-write-svg 处理1px边框
+@svg 1px-border {
+  height: 2px;
+  @rect {
+    fill: var(--color, black);
+    width: 100%;
+    height: 50%;
+  }
+}
+@svg square {
+  @rect {
+    fill: var(--color, #ddd);
+    width: var(--width, 100%);
+    height: var(--height, 100%);
+  }
+}
+.border-1px {
+  background: svg(square param(--color #00b1ff)) left top/1px 100% no-repeat repeat,
+    svg(square param(--color #00b1ff)) left top/100% 1px repeat no-repeat,
+    svg(square param(--color #00b1ff)) right top/1px 100% no-repeat repeat,
+    svg(square param(--color #00b1ff)) left bottom/100% 1px repeat no-repeat;
+}
+.border-left-1px {
+  background: svg(square param(--color #00b1ff)) left top/1px 100% no-repeat repeat;
+}
+.border-top-1px {
+  background: svg(square param(--color #00b1ff)) left top/100% 1px repeat no-repeat;
+}
+.border-right-1px {
+  background: svg(square param(--color #00b1ff)) right top/1px 100% no-repeat repeat;
+}
+.border-bottom-1px {
+  background: svg(square param(--color #00b1ff)) left bottom/100% 1px repeat no-repeat;
+}
+
+// vw、vh、vmin或vmax兼容方案 Viewport Units Buggyfill
+img {
+  content: normal !important;
+}
