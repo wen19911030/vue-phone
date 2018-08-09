@@ -12,7 +12,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "normalize.css";
 @import "./assets/css/base.scss";
 
 #app {
@@ -20,8 +19,5 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	.border-1px {
-		width: 10px;
-	}
 }
 </style>
